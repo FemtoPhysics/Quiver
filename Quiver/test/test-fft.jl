@@ -19,3 +19,10 @@ import Quiver: FFT
         -0.9238795325112867 - 0.3826834323650898im
     ]
 end
+
+@testset "Radix-2 FFT" begin
+    dat = [1.0 + 0.0im,  2.0 - 1.0im, 0.0 - 1.0im, -1.0 + 2.0im]
+    ans = [2.0 + 0.0im, -2.0 - 2.0im, 0.0 - 2.0im,  4.0 + 4.0im]
+
+    @test ans == FFT.fft(dat, FFT.FFTKernel(4))
+end
